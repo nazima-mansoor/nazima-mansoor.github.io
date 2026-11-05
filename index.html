@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nazima Mansuri</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Nazima Mansuri, Senior Android Developer with 10+ years of experience in EMM, MDM and Samsung Knox.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column with a device-status rail; projects read like spec sheets with their tech stack */
+:root {
+  --bg: #f5f6f8;
+  --surface: #ffffff;
+  --ink: #141824;
+  --muted: #5b6275;
+  --line: #dde1ea;
+  --accent: #2b4bee;
+  --accent-soft: #e6eaff;
+  --signal: #b86a00;
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1219; --surface: #171b25; --ink: #e9ecf3; --muted: #9aa2b6;
+    --line: #2a3040; --accent: #8da2ff; --accent-soft: #1e2645; --signal: #f2b35a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1219; --surface: #171b25; --ink: #e9ecf3; --muted: #9aa2b6;
+  --line: #2a3040; --accent: #8da2ff; --accent-soft: #1e2645; --signal: #f2b35a;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--body); font-size: 16px; line-height: 1.6;
+}
+.wrap {
+  max-width: 1040px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
+.label {
+  font-family: var(--mono); font-size: 12px; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--muted); margin: 0;
+}
+
+/* Nav */
+nav { padding-block: 20px; }
+nav .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.mark { font-family: var(--display); font-weight: 800; font-size: 18px; color: var(--ink); text-decoration: none; }
+nav ul { list-style: none; display: flex; gap: 20px; margin: 0; padding: 0; flex-wrap: wrap; }
+nav ul a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; }
+nav ul a:hover { color: var(--ink); }
+
+/* Hero */
+.hero { padding-block: 48px 56px; }
+.hero-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; align-items: end; }
+.hero h1 { font-size: clamp(40px, 7vw, 72px); font-weight: 800; line-height: 1.02; letter-spacing: -.02em; margin-top: 10px; }
+.hero h1 span { color: var(--accent); }
+.hero p.lede { font-size: 19px; color: var(--muted); max-width: 34em; margin: 20px 0 28px; }
+.actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn {
+  font: 600 15px var(--body); padding: 12px 20px; border-radius: 8px; cursor: pointer;
+  border: 1px solid var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+}
+.btn.primary { background: var(--accent); color: var(--bg); }
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn:hover { filter: brightness(1.08); }
+
+.status {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+  padding: 20px; font-family: var(--mono); font-size: 13px;
+}
+.status .row { display: flex; justify-content: space-between; gap: 12px; padding-block: 8px; border-bottom: 1px dashed var(--line); }
+.status .row:last-child { border-bottom: 0; }
+.status .k { color: var(--muted); }
+.status .v { text-align: right; }
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #1f9d55; margin-right: 6px; }
+
+/* Sections */
+section { padding-block: 56px; border-top: 1px solid var(--line); }
+.sec-head { display: flex; flex-direction: column; gap: 8px; margin-bottom: 32px; }
+.sec-head h2 { font-size: clamp(28px, 4vw, 38px); font-weight: 700; letter-spacing: -.01em; }
+
+/* Focus */
+.focus { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.focus h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+.focus p { margin: 0; color: var(--muted); }
+
+/* Projects */
+.projects { display: flex; flex-direction: column; gap: 20px; }
+.project {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+  padding: 28px; display: grid; grid-template-columns: 220px 1fr; gap: 28px;
+}
+.project.feature { border-color: var(--accent); }
+.p-meta { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.p-meta h3 { font-size: 24px; font-weight: 700; line-height: 1.15; }
+.where { font-size: 14px; color: var(--muted); }
+.p-body { min-width: 0; }
+.p-body > p { margin: 0 0 14px; }
+.p-body ul { margin: 0 0 18px; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
+.p-body li::marker { color: var(--accent); }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  font-family: var(--mono); font-size: 12px; padding: 4px 9px; border-radius: 999px;
+  background: var(--accent-soft); color: var(--ink);
+}
+.store { font-size: 14px; font-weight: 600; }
+
+/* Other apps */
+.groups { display: flex; flex-direction: column; gap: 36px; }
+.group h3 { font-size: 18px; font-weight: 700; margin-bottom: 14px; }
+.apps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 40px; }
+.app { padding-block: 12px; border-bottom: 1px solid var(--line); min-width: 0; }
+.app-name { font-weight: 600; display: flex; gap: 8px; flex-wrap: wrap; align-items: baseline; }
+.app-stack { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 400; }
+.app p { margin: 2px 0 0; color: var(--muted); font-size: 15px; }
+
+/* Timeline */
+.timeline { display: flex; flex-direction: column; }
+.job { display: grid; grid-template-columns: 200px 1fr; gap: 24px; padding-block: 22px; border-bottom: 1px solid var(--line); }
+.job:last-child { border-bottom: 0; }
+.job .when { font-family: var(--mono); font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.job h3 { font-size: 20px; font-weight: 700; }
+.job .role { color: var(--signal); font-weight: 600; font-size: 15px; margin: 2px 0 8px; }
+.job p { margin: 0; color: var(--muted); max-width: 62ch; }
+.job ul { margin: 0; padding-left: 18px; color: var(--muted); max-width: 70ch; display: flex; flex-direction: column; gap: 4px; }
+
+/* Skills */
+.skills { display: grid; grid-template-columns: repeat(4, 1fr); gap: 36px 28px; }
+.skills h3 { font-size: 15px; font-family: var(--body); font-weight: 600; margin-bottom: 10px; }
+.skills ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; color: var(--muted); font-size: 15px; }
+
+/* Contact */
+.contact { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center; }
+.contact h2 { font-size: clamp(28px, 4vw, 40px); margin-top: 8px; }
+.contact p { color: var(--muted); }
+.cbox { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 14px; }
+.cline { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.cline .val { font-family: var(--mono); font-size: 14px; user-select: all; word-break: break-all; }
+.copy { font: 500 13px var(--body); border: 1px solid var(--line); background: var(--bg); color: var(--ink); padding: 6px 12px; border-radius: 6px; cursor: pointer; }
+
+footer { padding-block: 32px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+
+@media (max-width: 820px) {
+  .hero-grid, .contact { grid-template-columns: 1fr; }
+  .focus { grid-template-columns: 1fr; }
+  .project, .job { grid-template-columns: 1fr; gap: 12px; }
+  .skills { grid-template-columns: repeat(2, 1fr); }
+  .apps { grid-template-columns: 1fr; }
+}
+@media (max-width: 440px) { .skills { grid-template-columns: 1fr; } .project { padding: 20px; } }
+@media (prefers-reduced-motion: no-preference) { .btn { transition: filter .15s; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="mark" href="#top">Nazima Mansuri</a>
+    <ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="label">Senior Android Developer · EMM, MDM &amp; Samsung Knox</p>
+      <h1>I build Android apps that <span>manage devices</span>, not just run on them.</h1>
+      <p class="lede">10+ years building native Android apps in Kotlin and Java, with self-designed UI in Jetpack Compose and XML. I specialise in enterprise mobility for parental-control, education, digital signage and DRM products.</p>
+      <div class="actions">
+        <a class="btn primary" href="#work">See my work</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/nazima-m-a665b7b5" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+    <aside class="status" aria-label="Quick facts">
+      <div class="row"><span class="k">status</span><span class="v"><span class="dot"></span>Open to remote roles</span></div>
+      <div class="row"><span class="k">experience</span><span class="v">10+ years</span></div>
+      <div class="row"><span class="k">languages</span><span class="v">Kotlin · Java</span></div>
+      <div class="row"><span class="k">ui</span><span class="v">Jetpack Compose · XML</span></div>
+      <div class="row"><span class="k">platforms</span><span class="v">AMAPI · Knox · Device Owner</span></div>
+      <div class="row"><span class="k">backend</span><span class="v">Node.js · Firebase · MongoDB</span></div>
+    </aside>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><p class="label">What I do</p><h2>Three areas I know deeply</h2></div>
+    <div class="focus">
+      <div>
+        <h3>Enterprise mobility</h3>
+        <p>EMM and MDM apps using the Android Management API, Device Owner, managed configurations and the Samsung Knox SDK, with kiosk mode and VPN and DNS-based URL filtering.</p>
+      </div>
+      <div>
+        <h3>Native Android apps</h3>
+        <p>Dialer and SMS apps, location tracking, foreground services, accessibility-based blocking, Google Maps routing and chat, with UI I design myself.</p>
+      </div>
+      <div>
+        <h3>Backend and Play compliance</h3>
+        <p>Real-time parent-to-child communication with Socket.IO, FCM and Node.js, and Google Play policy compliance across production apps.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head"><p class="label">Selected work</p><h2>Featured projects</h2></div>
+    <div class="projects">
+
+      <article class="project feature">
+        <div class="p-meta">
+          <p class="label">Parental control · MDM</p>
+          <h3>Wingio</h3>
+          <span class="where">Tabnova Solutions</span>
+        </div>
+        <div class="p-body">
+          <p>A parental-control MDM app for child devices.</p>
+          <ul>
+            <li>Tracks usage of server-defined apps, disables over-used ones and reports screen time.</li>
+            <li>Logs visited URLs through custom DNS and blocks URLs with a custom VPN.</li>
+            <li>Handles kids' app install requests, and blocks Play Store installs and user changes.</li>
+            <li>Includes location tracking, kiosk mode and accessibility-based blocking.</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">Kotlin</span><span class="tag">AMAPI</span><span class="tag">Samsung Knox</span><span class="tag">VPN</span><span class="tag">Custom DNS</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project feature">
+        <div class="p-meta">
+          <p class="label">Telephony · Parental control</p>
+          <h3>Wingio Dialer</h3>
+          <span class="where">Tabnova Solutions</span>
+        </div>
+        <div class="p-body">
+          <p>Replaces the default phone and SMS app on child devices.</p>
+          <ul>
+            <li>Enforces MDM contact restrictions, sleep mode and screen time limits.</li>
+            <li>Monitors calls and messages in real time and uploads them to Firebase.</li>
+            <li>Communicates both ways with the parent app.</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">Kotlin</span><span class="tag">Jetpack Compose</span><span class="tag">Samsung Knox</span><span class="tag">InCallService</span><span class="tag">SMS/MMS</span><span class="tag">Firebase</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="p-meta">
+          <p class="label">Education</p>
+          <h3>Samsung Classroom Management</h3>
+          <span class="where">Tabnova Solutions</span>
+          <a class="store" href="https://play.google.com/store/apps/details?id=com.tabnova.classroomapp" target="_blank" rel="noopener">Google Play ↗</a>
+        </div>
+        <div class="p-body">
+          <p>A teacher and student app with two modes.</p>
+          <ul>
+            <li><strong>Class mode:</strong> shares courses and files over the same Wi-Fi, lets teachers lock student devices, and supports two-way screen sharing, hardware controls and VPN-based URL blocking.</li>
+            <li><strong>Cloud mode:</strong> connects teachers and students from anywhere with Jitsi calls, plus APIs to create courses and share materials.</li>
+          </ul>
+          <div class="tags"><span class="tag">Native Android</span><span class="tag">Samsung Knox</span><span class="tag">VPN</span><span class="tag">Jitsi</span><span class="tag">Screen sharing</span></div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="p-meta">
+          <p class="label">Digital signage</p>
+          <h3>Video Site Looper</h3>
+          <span class="where">Tabnova Solutions</span>
+          <a class="store" href="https://play.google.com/store/apps/details?id=com.dev.site.videolooper" target="_blank" rel="noopener">Google Play ↗</a>
+        </div>
+        <div class="p-body">
+          <p>A digital signage app that plays MDM-configured videos on loop and as a screen saver.</p>
+          <p>Optimised the release build with ProGuard.</p>
+          <div class="tags"><span class="tag">Native Android</span><span class="tag">MDM</span><span class="tag">Download Manager</span><span class="tag">ProGuard</span></div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="p-meta">
+          <p class="label">On-device AI · Content safety</p>
+          <h3>Content Detection</h3>
+          <span class="where">Tabnova Solutions</span>
+        </div>
+        <div class="p-body">
+          <p>An Android app that detects unsafe content in images on the device, so nothing leaves the phone.</p>
+          <ul>
+            <li>Scans photos from the device library and images captured with the camera.</li>
+            <li>Detects nudity, violence and other unsafe content using Google ML Kit and TensorFlow Lite models.</li>
+            <li>Runs fully offline with on-device inference, so no images are uploaded to a server.</li>
+          </ul>
+          <div class="tags"><span class="tag">Kotlin</span><span class="tag">Google ML Kit</span><span class="tag">TensorFlow Lite</span><span class="tag">CameraX</span><span class="tag">On-device AI</span></div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="p-meta">
+          <p class="label">Media security</p>
+          <h3>DRM (Studio 100 project)</h3>
+          <span class="where">Tabnova Solutions</span>
+        </div>
+        <div class="p-body">
+          <p>An enterprise Digital Rights Management solution for securely delivering movie content to mobile devices in the UK.</p>
+          <div class="tags"><span class="tag">Native Android</span><span class="tag">DRM</span></div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="p-meta">
+          <p class="label">Social networking</p>
+          <h3>UBMe</h3>
+          <span class="where">LaNet Team Software Solutions</span>
+          <a class="store" href="https://play.google.com/store/apps/details?id=com.UBMe" target="_blank" rel="noopener">Google Play ↗</a>
+        </div>
+        <div class="p-body">
+          <p>A location-based social networking app to discover and connect with nearby places, events and people.</p>
+          <ul>
+            <li>Post section where users create and upload posts with images, videos, location, hashtags and text.</li>
+            <li>Image and video editing for posts using FFmpeg.</li>
+            <li>Check-ins, feeds, events, live chat and one-to-one chat.</li>
+            <li>Localisation support and in-app purchases.</li>
+          </ul>
+          <div class="tags"><span class="tag">Java</span><span class="tag">FFmpeg</span><span class="tag">Location</span><span class="tag">Chat</span><span class="tag">In-App Purchases</span></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><p class="label">More apps</p><h2>Other apps I have built</h2></div>
+    <div class="groups">
+      <div class="group">
+        <h3>Tabnova Solutions</h3>
+        <div class="apps">
+          <div class="app"><div class="app-name">Kids Dashboard <span class="app-stack">Knox · Kiosk Mode</span></div><p>Locks the device into a kiosk dashboard with only approved apps, and allows only approved URLs in the browser.</p></div>
+          <div class="app"><div class="app-name">Package Disabler <span class="app-stack">Knox</span></div><p>Enables and disables apps, imports and exports package lists, disables bloatware and uninstalls packages.</p></div>
+          <div class="app"><div class="app-name">Owner App <span class="app-stack">Device Owner</span></div><p>Enables and disables packages on non-Samsung devices.</p></div>
+          <div class="app"><div class="app-name">Hardware Key Mapper <span class="app-stack">Knox</span></div><p>Maps hardware keys to uninstall an app, lock or reboot the device, and enable or disable apps.</p></div>
+          <div class="app"><div class="app-name">Power On Boot <span class="app-stack">Knox</span></div><p>Automatically powers on Samsung devices when connected to power.</p></div>
+          <div class="app"><div class="app-name">URL Blocker <span class="app-stack">VPN</span></div><p>Blocks browser URLs through a VPN using a JSON URL list or a URL list from a file.</p></div>
+          <div class="app"><div class="app-name">WIPE and Power Cleaner <span class="app-stack">MDM</span></div><p>Device cleaner apps that clear cache, files and cookies on managed devices.</p></div>
+          <div class="app"><div class="app-name">Face Detection <span class="app-stack">Google ML Kit</span></div><p>Detects faces and counts viewers to manage access to specific videos.</p></div>
+          <div class="app"><div class="app-name">Power Chat <span class="app-stack">Firebase</span></div><p>Chat app with Firebase Realtime Database and Firebase Authentication for login and registration.</p></div>
+        </div>
+      </div>
+      <div class="group">
+        <h3>Sassy Infotech</h3>
+        <div class="apps">
+          <div class="app"><div class="app-name">Haha Cars Rider and Partner <span class="app-stack">Kotlin · Google Maps</span></div><p>Ride-hailing apps. Riders book trips with 2 to 4 stops and see routes as polylines. Drivers accept requests, manage online status and track document approval.</p></div>
+          <div class="app"><div class="app-name">GOPark <span class="app-stack">Java</span></div><p>Online marketplace for booking and hosting privately owned parking spaces.</p></div>
+          <div class="app"><div class="app-name">Swadesh News <span class="app-stack">Kotlin · Google Ads</span></div><p>Gujarati newspaper app with Google Ads, published on Google Play.</p></div>
+          <div class="app"><div class="app-name">Vivaa <span class="app-stack">Java · Firebase</span></div><p>Dating app with partner-preference filters and Firebase chat between users.</p></div>
+          <div class="app"><div class="app-name">Cupidknot <span class="app-stack">Java</span></div><p>Matrimonial app with partner suggestions that users can approve or decline.</p></div>
+          <div class="app"><div class="app-name">E-commerce apps <span class="app-stack">Native Android</span></div><p>Several online shopping apps for clients.</p></div>
+        </div>
+      </div>
+      <div class="group">
+        <h3>LaNet Team Software Solutions</h3>
+        <div class="apps">
+          <div class="app"><div class="app-name">Rastrack CRT <span class="app-stack">Java</span></div><p>Transportation and delivery app to monitor vehicles, routes and details of each delivery.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head"><p class="label">Experience</p><h2>10+ years, three companies</h2></div>
+    <div class="timeline">
+      <div class="job">
+        <span class="when">Feb 2021 – Present</span>
+        <div>
+          <h3>Tabnova Solutions Pvt. Ltd.</h3>
+          <p class="role">Android Developer</p>
+          <ul>
+            <li>Build and maintain EMM, MDM and Samsung Knox apps for parental control, education, digital signage, device management and DRM.</li>
+            <li>Develop the Wingio parental-control suite with AMAPI and Knox.</li>
+            <li>Implemented real-time parent-to-child device communication using Socket.IO, Firebase Cloud Messaging and a Node.js backend.</li>
+            <li>Fixed critical production crashes in foreground, location and VPN services across managed device fleets.</li>
+            <li>Led Google Play policy compliance, removing broad storage and media permissions using Photo Picker, SAF and app-specific storage.</li>
+            <li>Use AI coding assistants for code audits, debugging and refactoring, reviewing and testing every AI-generated change.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="job">
+        <span class="when">Feb 2019 – Feb 2021</span>
+        <div>
+          <h3>Sassy Infotech Pvt. Ltd.</h3>
+          <p class="role">Android Developer</p>
+          <ul>
+            <li>Developed native Android client apps in Kotlin and Java: ride-hailing, parking marketplace, Gujarati news, dating, matrimonial and e-commerce.</li>
+            <li>Integrated Google Maps routing with polylines, multi-stop ride booking, Firebase chat, document upload with approval status and Google Ads.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="job">
+        <span class="when">Jul 2016 – Jan 2019</span>
+        <div>
+          <h3>LaNet Team Software Solutions Pvt. Ltd.</h3>
+          <p class="role">Software Developer</p>
+          <ul>
+            <li>Worked on Java-based projects with backend APIs and PostgreSQL databases, alongside Android app development.</li>
+            <li>Main project: UBMe. Also built Rastrack CRT for transport and logistics companies.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="job">
+        <span class="when">2016</span>
+        <div>
+          <h3>B.E. Computer Engineering</h3>
+          <p class="role">C.K. Pithawalla College of Engineering &amp; Technology, Surat</p>
+          <p>CGPA 8.43</p>
+        </div>
+      </div>
+      <div class="job">
+        <span class="when">2013</span>
+        <div>
+          <h3>Diploma in Computer Engineering</h3>
+          <p class="role">Government Polytechnic for Girls, Surat</p>
+          <p>CGPA 8.02</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head"><p class="label">Toolkit</p><h2>Skills</h2></div>
+    <div class="skills">
+      <div>
+        <h3>Languages</h3>
+        <ul><li>Kotlin</li><li>Java</li><li>JavaScript</li></ul>
+      </div>
+      <div>
+        <h3>Android</h3>
+        <ul><li>Jetpack Compose, XML</li><li>MVVM / MVI</li><li>Clean Architecture</li><li>Coroutines &amp; Flow</li><li>Hilt</li><li>Room, DataStore</li><li>WorkManager</li><li>Navigation</li><li>FFmpeg (image and video editing)</li></ul>
+      </div>
+      <div>
+        <h3>Android platform</h3>
+        <ul><li>Foreground Services</li><li>AccessibilityService, VpnService</li><li>Telecom / InCallService, SMS/MMS</li><li>Photo Picker, SAF, ProGuard</li><li>In-App Purchases, Localisation</li><li>Google Maps SDK, Geofencing</li></ul>
+      </div>
+      <div>
+        <h3>Enterprise</h3>
+        <ul><li>AMAPI</li><li>Device Owner APIs</li><li>Samsung Knox SDK</li><li>EMM / MDM</li><li>Managed Configurations</li><li>Kiosk mode</li><li>VPN, Custom DNS</li><li>Microsoft Intune</li></ul>
+      </div>
+      <div>
+        <h3>Backend &amp; Cloud</h3>
+        <ul><li>Firebase (RTDB, Auth, FCM, Crashlytics)</li><li>Node.js</li><li>MongoDB, PostgreSQL</li><li>REST</li><li>Socket.IO</li></ul>
+      </div>
+      <div>
+        <h3>AI / ML</h3>
+        <ul><li>ML Kit</li><li>TensorFlow Lite</li><li>On-device content detection</li><li>AI-assisted development (Claude Code)</li></ul>
+      </div>
+      <div>
+        <h3>Tools</h3>
+        <ul><li>Android Studio</li><li>Git, GitHub</li><li>Play Console</li><li>Gradle (Kotlin DSL)</li></ul>
+      </div>
+      <div>
+        <h3>Cross-platform &amp; more</h3>
+        <ul><li>React Native, Expo</li><li>Jitsi, Screen Sharing</li><li>English, Hindi, Gujarati</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap contact">
+    <div>
+      <p class="label">Contact</p>
+      <h2>Let's work together</h2>
+      <p>I'm looking for a remote Android role, especially in EMM, MDM or enterprise mobility. Email is the best way to reach me.</p>
+    </div>
+    <div class="cbox">
+      <div class="cline">
+        <span class="val" id="email">mansoor.nazima20@gmail.com</span>
+        <button class="copy" id="copy-email" type="button">Copy</button>
+      </div>
+      <div class="cline">
+        <a class="val" href="https://www.linkedin.com/in/nazima-m-a665b7b5" target="_blank" rel="noopener">linkedin.com/in/nazima-m-a665b7b5</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Nazima Mansuri · Senior Android Developer</div>
+</footer>
+
+<script>
+document.getElementById('copy-email').addEventListener('click', function () {
+  var btn = this, text = document.getElementById('email').textContent;
+  function done(msg) { btn.textContent = msg; setTimeout(function () { btn.textContent = 'Copy'; }, 1800); }
+  function fallback() {
+    var r = document.createRange(); r.selectNodeContents(document.getElementById('email'));
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); done('Selected');
+  }
+  try {
+    navigator.clipboard.writeText(text).then(function () { done('Copied'); }, fallback);
+  } catch (e) { fallback(); }
+});
+</script>
+</body>
+</html>
